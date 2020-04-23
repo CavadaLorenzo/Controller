@@ -9,6 +9,19 @@ import simplejson as json
 
 @login_required
 def copycat(request):
+    """
+    This method will create the form for a new TransferRequest. 
+    This method can be accessible only from an authenticated user.
+
+    :param request: the request received.
+
+    If the request.method is POST the form is validated and, ii it is correct
+    the time_span and view_count value will be extracted and a get request to the
+    copycat API will be done. 
+    The response of this request is than used to create a list of the performed transfer.
+
+    :return: a render of the copycat page.
+    """
     try:
         if request.method == 'POST':
             form = TransferRequestForm(request.POST)
@@ -51,8 +64,4 @@ def copycat(request):
         print(tb)
         messages.warning(request, f'Attention! An exception occured, for more information look at the terminal.')
         return render(request, 'copycat/copycat.html', {'form': form})
-
-
-def result(request):
-
-    return render(request, 'copycat/result.html')
+        
