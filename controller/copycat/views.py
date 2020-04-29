@@ -1,12 +1,13 @@
 from django.shortcuts import render
-import requests, traceback
+import requests, traceback, os
 from .forms import TransferRequestForm
 from .models import Transfer
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import simplejson as json
 
-
+COPYCAT_IP = os.environ['COPYCAT_IP']
+COPYCAT_PORT = os.environ['COPYCAT_PORT']
 @login_required
 def copycat(request):
     """
@@ -31,9 +32,12 @@ def copycat(request):
                 time = form.cleaned_data["time_span"]
                 count = form.cleaned_data["view_count"]
 
-                IP_COPYCAT = "http://192.168.1.188:4025?COUNT=count_value&TIME=time_span"
+                IP_COPYCAT = "http://" + COPYCAT_IP + ":" + COPYCAT_PORT + "?COUNT=count_value&TIME=time_span"
+
                 IP_COPYCAT = IP_COPYCAT.replace("count_value", str(count))
                 IP_COPYCAT = IP_COPYCAT.replace("time_span", str(time))
+
+                print(IP_COPYCAT)
 
                 response = requests.get(IP_COPYCAT).json()
                 transfer_list = response['transfer']

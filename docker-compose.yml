@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  manager:
+    container_name: controller
+    build:
+      context: ./
+      dockerfile: ControllerDockerfile
+    environment:
+      - COPYCAT_IP=192.168.1.188
+      - COPYCAT_PORT=4025
+      - PYTHONUNBUFFERED=1
+    ports:
+      - 42069:8000
