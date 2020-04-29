@@ -10,4 +10,4 @@ services:
       - COPYCAT_PORT=4025
       - PYTHONUNBUFFERED=1
     ports:
-      - 42069:8000
+      - 40025:8000
