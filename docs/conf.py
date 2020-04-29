@@ -13,7 +13,7 @@
 import os
 import sys
 import django
-sys.path.append(os.path.abspath('..'))
+sys.path.append(os.path.abspath('../../manager'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'controller.settings'
 django.setup()
 

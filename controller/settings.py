@@ -25,15 +25,15 @@ SECRET_KEY = 'hfntii35moff1m*xvuj8-##9vjm@c6ey#l09pel@5_x+4fxvfs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'crispy_forms',
-    'home.apps.HomeConfig',
     'copycat.apps.CopycatConfig',
+    'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
