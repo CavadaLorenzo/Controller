@@ -5,9 +5,10 @@ services:
     build:
       context: ./
       dockerfile: ControllerDockerfile
+      args:
+        - COPYCAT_IP=192.168.1.188
+        - COPYCAT_PORT=4025
     environment:
-      - COPYCAT_IP=192.168.1.188
-      - COPYCAT_PORT=4025
       - PYTHONUNBUFFERED=1
     ports:
       - 40025:8000

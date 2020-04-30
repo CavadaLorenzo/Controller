@@ -1,7 +1,13 @@
 FROM python:3
+ARG COPYCAT_IP
+ARG COPYCAT_PORT
 ENV PYTHONUNBUFFERED 1
+ENV COPYCAT_IP=$COPYCAT_IP
+ENV COPYCAT_PORT=$COPYCAT_PORT
 RUN mkdir /controller
 WORKDIR /controller
 COPY /controller /controller
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN python3 manage.py migrate
+RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', '', 'admin')" | python3 manage.py shell
 CMD ["python3","manage.py", "runserver", "0.0.0.0:8000"]
