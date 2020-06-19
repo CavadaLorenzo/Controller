@@ -6,8 +6,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import simplejson as json
 
-COPYCAT_IP = os.environ['COPYCAT_IP']
-COPYCAT_PORT = os.environ['COPYCAT_PORT']
+try:    COPYCAT_IP = os.environ['COPYCAT_IP']
+except:    COPYCAT_IP = "192.168.1.190"
+try:    COPYCAT_PORT = os.environ['COPYCAT_PORT']
+except:    COPYCAT_PORT = "4025" 
+
+
 @login_required
 def copycat(request):
     """

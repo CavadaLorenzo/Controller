@@ -1,0 +1,40 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="row mt-5 no-gutters">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h3 style="display: inline;">File list:</h3> <p style="display: inline;">click <a href="{% url 'file_list' %}">here </a> to reload</p>
+        
+        <div class="container-fluid mt-5">
+            <table class="table table-striped table-bordered mt-5 display" id="file_list_table" style="width: 100%">
+                <thead>
+                    <th scope="col">ID</th>
+                    <th scope="col">Server ID</th>
+                    <th scope="col">Filename</th>
+                    <th scope="col">Date of Upload</th>
+                </thead>
+                <tbody>
+                    {% for file in file_list %}
+                    <tr>
+                        <td>{{ file.id }}</td>
+                        <td>{{ file.server_id }}</td>
+                        <td>{{ file.filename }}</td>
+                        <td>{{ file.copy_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('#file_list_table').DataTable();
+        });
+    </script>
+{% endblock script%}

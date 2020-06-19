@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'copycat.apps.CopycatConfig',
     'home.apps.HomeConfig',
+    'file_list.apps.FileListConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
